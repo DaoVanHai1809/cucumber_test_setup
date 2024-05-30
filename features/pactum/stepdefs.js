@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { Given, When, Then, Before } = require('@cucumber/cucumber');
+const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const pactum = require('pactum');
 
 let spec = pactum.spec();
@@ -38,4 +38,8 @@ Then("I expect response should have a status {int}", function (int) {
 
 Then('I expect response time should be less than {int} ms', function (ms) {
   spec.response().should.have.responseTimeLessThan(ms)
+});
+
+After(() => {
+  spec.end();
 });
